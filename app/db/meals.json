@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "name": "Chicken Rice Bowl",
+    "preparation_time_mins": 15,
+    "effort": "low",
+    "dietary_tags": ["high_protein"],
+    "mood_tags": ["tired", "focused"],
+    "protein_rating": 7,
+    "comfort_rating": 4,
+    "ingredients": ["chicken", "rice", "soy sauce"]
+  },
+  {
+    "id": 2,
+    "name": "Quinoa Salad",
+    "preparation_time_mins": 10,
+    "effort": "low",
+    "dietary_tags": ["vegetarian", "gluten_free"],
+    "mood_tags": ["stressed", "anxious"],
+    "protein_rating": 3,
+    "comfort_rating": 3,
+    "ingredients": ["quinoa", "cucumber", "tomatoes", "feta"]
+  },
+  {
+    "id": 3,
+    "name": "Grilled Salmon with Veggies",
+    "preparation_time_mins": 30,
+    "effort": "medium",
+    "dietary_tags": ["high_protein", "gluten_free"],
+    "mood_tags": ["sad", "depressed"],
+    "protein_rating": 7,
+    "comfort_rating": 7,
+    "ingredients": ["salmon", "broccoli", "carrots", "lemon"]
+  }
+]
