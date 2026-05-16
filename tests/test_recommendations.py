@@ -43,6 +43,15 @@ def test_recommendations_invalid_input():
     response = client.post("/recommendations", json = payload)
     assert response.status_code == 422
 
-# Test that ensures scoring logic is working as expected
-# Test for no recommendations found scenario
+def test_fallback_recommendation():
+    result = get_recommendations(
+        mood="happy",
+        dietary_tags=["vegan"],
+        effort="high",
+        preparation_time_mins=1
+    )
 
+    recommendations = result["recommendations"]
+    assert len(recommendations) == 3 
+    assert all(recommendation["score"] == 0 for recommendation in recommendations)
+    assert all(recommendation["reason"] == "No strong matches, but this meal could still be a good choice!" for recommendation in recommendations)

@@ -1,6 +1,6 @@
 # Moodish
 
-Moodish is a backend-first meal recommendation API built with Python and FastAPI. It recommends meals from a small catalogue using deterministic ranking logic based on mood, effort level, dietary preferences, and available preparation time.
+Moodish is a backend-first meal recommendation API built with Python and FastAPI. It ranks meals from a small catalogue using deterministic scoring based on mood, effort level, dietary preferences, and available preparation time.
 
 This project is designed as a portfolio backend to demonstrate practical API engineering skills rather than frontend polish. The emphasis is on request validation, clean separation of concerns, explainable recommendation logic, and automated testing.
 
@@ -13,7 +13,6 @@ This project is designed as a portfolio backend to demonstrate practical API eng
 - testable architecture
 - automated API and service tests
 - clean project structure for future extension
-- fun project based on cooking, recipes and food which is a personal interest and relatable
 
 The current implementation is intentionally a focused MVP. It aims to show a complete backend slice that can be iterated into a more production-style service.
 
@@ -30,6 +29,7 @@ The current implementation is intentionally a focused MVP. It aims to show a com
 - top 3 recommendations returned with an explanation for each result
 - in-memory meal seed data loaded from JSON
 - automated tests with `pytest`
+- Docker support for containerised local development
 
 ## Tech Stack
 
@@ -37,6 +37,7 @@ The current implementation is intentionally a focused MVP. It aims to show a com
 - FastAPI
 - Pydantic
 - Pytest
+- Docker
 
 ## Architecture
 
@@ -44,26 +45,26 @@ The codebase is structured to separate HTTP concerns from application logic:
 
 ```text
 app/
-├── api/
-│   └── routes/
-│       ├── health.py
-│       ├── meals.py
-│       └── recommendations.py
-├── db/
-│   ├── meals.json
-│   └── seed.py
-├── schemas/
-│   ├── meals.py
-│   └── recommendations.py
-├── services/
-│   ├── meal_service.py
-│   └── recommendation_service.py
-└── main.py
+|-- api/
+|   `-- routes/
+|       |-- health.py
+|       |-- meals.py
+|       `-- recommendations.py
+|-- db/
+|   |-- meals.json
+|   `-- seed.py
+|-- schemas/
+|   |-- meals.py
+|   `-- recommendations.py
+|-- services/
+|   |-- meal_service.py
+|   `-- recommendation_service.py
+`-- main.py
 
 tests/
-├── test_health.py
-├── test_meals.py
-└── test_recommendations.py
+|-- test_health.py
+|-- test_meals.py
+`-- test_recommendations.py
 ```
 
 ### Design Notes
@@ -182,13 +183,33 @@ Activate the virtual environment on Windows:
 Install dependencies:
 
 ```bash
-pip install -r requirements.txt
+py -m pip install -r requirements.txt
 ```
 
 Run the API:
 
 ```bash
 py -m uvicorn app.main:app --reload --port 9999
+```
+
+Interactive API docs:
+
+```text
+http://127.0.0.1:9999/docs
+```
+
+## Running with Docker
+
+Build the image:
+
+```bash
+docker build -t moodish-api .
+```
+
+Run the image:
+
+```bash
+docker run -p 9999:8000 moodish-api
 ```
 
 Interactive API docs:
@@ -229,8 +250,8 @@ Planned next steps for expanding Moodish into a more production-style backend:
 
 - improve test coverage
 - add structured logging and configuration management
-- add Docker support for local development
 - add GitHub Actions CI
+- split runtime and development dependencies
 
 ### Optional AI Layer
 
