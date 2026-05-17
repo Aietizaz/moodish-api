@@ -30,6 +30,7 @@ The current implementation is intentionally a focused MVP. It aims to show a com
 - in-memory meal seed data loaded from JSON
 - automated tests with `pytest`
 - Docker support for containerised local development
+- GitHub Actions CI workflow for automated test runs on push and pull request
 
 ## Tech Stack
 
@@ -38,6 +39,7 @@ The current implementation is intentionally a focused MVP. It aims to show a com
 - Pydantic
 - Pytest
 - Docker
+- GitHub Actions
 
 ## Architecture
 
@@ -65,6 +67,10 @@ tests/
 |-- test_health.py
 |-- test_meals.py
 `-- test_recommendations.py
+
+.github/
+`-- workflows/
+    `-- ci.yml
 ```
 
 ### Design Notes
@@ -224,6 +230,19 @@ http://127.0.0.1:9999/docs
 py -m pytest
 ```
 
+## Continuous Integration
+
+GitHub Actions runs the test suite automatically on:
+
+- push
+- pull request
+
+The CI workflow is defined in:
+
+```text
+.github/workflows/ci.yml
+```
+
 ## Current Status
 
 This repository currently represents a Phase 1 backend MVP:
@@ -232,6 +251,7 @@ This repository currently represents a Phase 1 backend MVP:
 - validated request and response models
 - deterministic recommendation service
 - automated test coverage for core endpoints
+- GitHub Actions CI for automated test execution
 
 The current implementation uses JSON seed data rather than a real database and focuses on the backend core before infrastructure and deployment polish.
 
@@ -250,7 +270,6 @@ Planned next steps for expanding Moodish into a more production-style backend:
 
 - improve test coverage
 - add structured logging and configuration management
-- add GitHub Actions CI
 - split runtime and development dependencies
 
 ### Optional AI Layer
